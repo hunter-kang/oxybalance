@@ -90,13 +90,6 @@ def main():
 
     CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A, CURRENT_BALANCE_B, CURRENT_BALANCE_C, CURRENT_BALANCE_D = calculateBalance(differenceDate, firstRowValues, secondRowValues, lastRowValues)
 
-    print(differenceDate.days)
-    print(CURRENT_BALANCE_APLUS)
-    print(CURRENT_BALANCE_A)
-    print(CURRENT_BALANCE_B)
-    print(CURRENT_BALANCE_C)
-    print(CURRENT_BALANCE_D)
-
 if __name__ == "__main__":
     main()
 

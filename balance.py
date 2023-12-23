@@ -114,5 +114,13 @@ print(CURRENT_BALANCE_D)
 
 
 
+from flask import Flask, render_template
+app = Flask(__name__)
 
+@app.route('/')
+def hello():
+    return render_template('index.html', CURRENT_BALANCE_APLUS = CURRENT_BALANCE_APLUS, todayDate = todayDate)
+
+if __name__ == '__main__':
+    app.run()
 

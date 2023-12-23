@@ -2,117 +2,103 @@ from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 import requests
 
-# puts all values of rows into a list of strings
-def findRowValues(row_string):
-   rowValues = []
-   starting = -1
-   while row_string.find(' ', starting +1) != -1:
-       ending = row_string.find(' ', starting + 1)
-       rowValues.append(row_string[(starting +1 ):ending])
-       starting = ending
-   rowValues.append(row_string[starting + 1:])
-   return rowValues
-
-
-# scrapes the website for the data rows
-url_balance = requests.get('https://www.oxy.edu/student-life/campus-dining/meal-plans/check-your-balance').text
-url_soup = BeautifulSoup(url_balance, 'lxml')
-balance_table = url_soup.find('table')
-rows = balance_table.find_all('tr')
-
-
-firstRow = rows[2].text.strip().replace('\n', ' ').replace(',', '')
-secondRow= rows[3].text.strip().replace('\n', ' ').replace(',', '')
-lastRow = rows[-1].text.strip().replace('\n', ' ').replace(',', '')
-
-
-firstRowValues = findRowValues(firstRow)
-secondRowValues = findRowValues(secondRow)
-lastRowValues = findRowValues(lastRow)
-
-
-date = firstRowValues[1].replace('/', ' ')
-startingMonth = (int) (findRowValues(date)[0])
-startingDay = (int) (findRowValues(date)[1])
-
-
-todayDate = datetime.today()
-currentYear = todayDate.year
-startingDate = datetime(currentYear, startingMonth, startingDay)
-differenceDate = todayDate - startingDate
-
-
-# magic numbers
-TOTAL_WEEKS = (int)(lastRowValues[0])
-TOTAL_DAYS = TOTAL_WEEKS * 7
-STARTING_BALANCE_APLUS = (float)(firstRowValues[2])
-STARTING_BALANCE_A = (float)(firstRowValues[3])
-STARTING_BALANCE_B = (float)(firstRowValues[4])
-STARTING_BALANCE_C = (float)(firstRowValues[5])
-STARTING_BALANCE_D = (float)(firstRowValues[6])
-WEEKLYUPDATE_APLUS = STARTING_BALANCE_APLUS - (float)(secondRowValues[2])
-WEEKLYUPDATE_A = STARTING_BALANCE_A - (float)(secondRowValues[3])
-WEEKLYUPDATE_B = STARTING_BALANCE_B - (float)(secondRowValues[4])
-WEEKLYUPDATE_C = STARTING_BALANCE_C - (float)(secondRowValues[5])
-WEEKLYUPDATE_D = STARTING_BALANCE_D - (float)(secondRowValues[6])
-DAILYUPDATE_APLUS = WEEKLYUPDATE_APLUS / 7
-DAILYUPDATE_A = WEEKLYUPDATE_A / 7
-DAILYUPDATE_B = WEEKLYUPDATE_B / 7
-DAILYUPDATE_C = WEEKLYUPDATE_C / 7
-DAILYUPDATE_D = WEEKLYUPDATE_D / 7
+# global variables
 CURRENT_BALANCE_APLUS = 0.00
 CURRENT_BALANCE_A = 0.00
 CURRENT_BALANCE_B = 0.00
 CURRENT_BALANCE_C = 0.00
 CURRENT_BALANCE_D = 0.00
+todayDate = datetime.today()
+
+# puts all values of rows into a list of strings
+def findRowValues(row_string):
+    rowValues = []
+    starting = -1
+    while row_string.find(' ', starting +1) != -1:
+        ending = row_string.find(' ', starting + 1)
+        rowValues.append(row_string[(starting +1 ):ending])
+        starting = ending
+    rowValues.append(row_string[starting + 1:])
+    return rowValues
+
+# scrapes the website for the data rows
+def scrapeWebsite():
+    url_balance = requests.get('https://www.oxy.edu/student-life/campus-dining/meal-plans/check-your-balance').text
+    url_soup = BeautifulSoup(url_balance, 'lxml')
+    balance_table = url_soup.find('table')
+    rows = balance_table.find_all('tr')
+
+    firstRow = rows[2].text.strip().replace('\n', ' ').replace(',', '')
+    secondRow= rows[3].text.strip().replace('\n', ' ').replace(',', '')
+    lastRow = rows[-1].text.strip().replace('\n', ' ').replace(',', '')
+
+    firstRowValues = findRowValues(firstRow)
+    secondRowValues = findRowValues(secondRow)
+    lastRowValues = findRowValues(lastRow)
+
+    return firstRowValues, secondRowValues, lastRowValues
 
 #calculate meal plan difference
-def calculateBalance():
-   global CURRENT_BALANCE_A
-   global CURRENT_BALANCE_APLUS
-   global CURRENT_BALANCE_B
-   global CURRENT_BALANCE_C
-   global CURRENT_BALANCE_D
-   global differenceDate
-   if differenceDate.days > TOTAL_DAYS:
-       print("ZEROS")
-       CURRENT_BALANCE_APLUS = 0.00
-       CURRENT_BALANCE_A = 0.00
-       CURRENT_BALANCE_B = 0.00
-       CURRENT_BALANCE_C = 0.00
-       CURRENT_BALANCE_D = 0.00
-   else:
-       print("NEW BALANCE")
-       global STARTING_BALANCE_A
-       global STARTING_BALANCE_APLUS
-       global STARTING_BALANCE_B
-       global STARTING_BALANCE_C
-       global STARTING_BALANCE_D
-       global DAILYUPDATE_A
-       global DAILYUPDATE_APLUS
-       global DAILYUPDATE_D
-       global DAILYUPDATE_B
-       global DAILYUPDATE_C
-       CURRENT_BALANCE_APLUS = STARTING_BALANCE_APLUS - (DAILYUPDATE_APLUS * differenceDate.days)
-       CURRENT_BALANCE_A = STARTING_BALANCE_A - (DAILYUPDATE_A * differenceDate.days)
-       CURRENT_BALANCE_B = STARTING_BALANCE_B - (DAILYUPDATE_B * differenceDate.days)
-       CURRENT_BALANCE_C = STARTING_BALANCE_C - (DAILYUPDATE_C * differenceDate.days)
-       CURRENT_BALANCE_D = STARTING_BALANCE_D - (DAILYUPDATE_D * differenceDate.days)
+def calculateBalance(differenceDate, firstRowValues, secondRowValues, lastRowValues):
+    totalWeeks = (int)(lastRowValues[0])
+    totalDays = totalWeeks * 7
 
-# calculate balance
-calculateBalance()
-print(differenceDate.days)
-print(TOTAL_DAYS)
-print(CURRENT_BALANCE_APLUS)
-print(CURRENT_BALANCE_A)
-print(CURRENT_BALANCE_B)
-print(CURRENT_BALANCE_C)
-print(CURRENT_BALANCE_D)
+    startingBalanceAPlus = (float)(firstRowValues[2])
+    startingBalanceA = (float)(firstRowValues[3])
+    startingBalanceB = (float)(firstRowValues[4])
+    startingBalanceC = (float)(firstRowValues[5])
+    startingBalanceD = (float)(firstRowValues[6])
 
+    weeklyUpdateAPlus = startingBalanceAPlus - (float)(secondRowValues[2])
+    weeklyUpdateA = startingBalanceA - (float)(secondRowValues[3])
+    weeklyUpdateB = startingBalanceB - (float)(secondRowValues[4])
+    weeklyUpdateC = startingBalanceC - (float)(secondRowValues[5])
+    weeklyUpdateD = startingBalanceD - (float)(secondRowValues[6])
 
+    dailyUpdateAPlus = weeklyUpdateAPlus / 7
+    dailyUpdateA = weeklyUpdateA / 7
+    dailyUpdateB = weeklyUpdateB / 7
+    dailyUpdateC = weeklyUpdateC / 7
+    dailyupdateD = weeklyUpdateD / 7
 
+    if differenceDate.days > totalDays:
+        currentBalanceAPlus = 0.00
+        currentBalanceA = 0.00
+        currentBalanceB = 0.00
+        currentBalanceC = 0.00
+        currentBalanceD = 0.00
+    else:
+        currentBalanceAPlus = startingBalanceAPlus - (dailyUpdateAPlus * differenceDate.days)
+        currentBalanceA = startingBalanceA - (dailyUpdateA * differenceDate.days)
+        currentBalanceB = startingBalanceB - (dailyUpdateB * differenceDate.days)
+        currentBalanceC = startingBalanceC - (dailyUpdateC * differenceDate.days)
+        currentBalanceD = startingBalanceD - (dailyupdateD * differenceDate.days)
 
+    return currentBalanceAPlus, currentBalanceA, currentBalanceB, currentBalanceC, currentBalanceD
 
+def main():
+    currentYear = todayDate.year
+
+    firstRowValues, secondRowValues, lastRowValues = scrapeWebsite()
+
+    date = firstRowValues[1].replace('/', ' ')
+    startingMonth = (int) (findRowValues(date)[0])
+    startingDay = (int) (findRowValues(date)[1])
+
+    startingDate = datetime(currentYear, startingMonth, startingDay)
+    differenceDate = todayDate - startingDate
+
+    CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A, CURRENT_BALANCE_B, CURRENT_BALANCE_C, CURRENT_BALANCE_D = calculateBalance(differenceDate, firstRowValues, secondRowValues, lastRowValues)
+
+    print(differenceDate.days)
+    print(CURRENT_BALANCE_APLUS)
+    print(CURRENT_BALANCE_A)
+    print(CURRENT_BALANCE_B)
+    print(CURRENT_BALANCE_C)
+    print(CURRENT_BALANCE_D)
+
+if __name__ == "__main__":
+    main()
 
 from flask import Flask, render_template
 app = Flask(__name__)

@@ -33,24 +33,18 @@
           border-radius: 2%;
           text-align: center;
       }
-
-      .view-current {
-        background-color: #e4642c;
-        border: 5px solid #e4642c;
-        color: black;
-        text-decoration: bold;
-        text-align: center;
-        border-radius: 2%;
-        display: block;
-      }
       
-
       .carousel-control-next-icon {
         filter: invert(100%);
       }
 
       .carousel-control-prev-icon {
         filter: invert(100%);
+      }
+      
+      .olive {
+        width: 40%;
+        margin-top: 5%;
       }
 
       @media only screen and (max-width: 600px){
@@ -92,7 +86,7 @@
       }
 
       .btn-custom {
-        margin-top: 5%;
+        margin-top: 0%;
         width: 90%;
         background-color: #e4642c;
         color: #000000;
@@ -286,6 +280,12 @@
       </div>
       <div class = "col-3 col-s-12" >      </div>
 </div>
+<div class = "row">
+  <div class = "col-d-3 col-s-3">      </div>
+  <div class = "col-0 col-d-6 col-s-9">
+    <img class= "olive" src = "{{ url_for('static', filename='occidental_logo.jpg') }}" alt="Olive Picture"> </img>
+  </div>
+  <div class = "col-3 col-s-12" >      </div>
 <h2 class >DEBUGGGING</h2>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

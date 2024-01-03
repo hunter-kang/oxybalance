@@ -9,8 +9,9 @@ CURRENT_BALANCE_B = 0.00
 CURRENT_BALANCE_C = 0.00
 CURRENT_BALANCE_D = 0.00
 todayDate = datetime.today()
-format = "%A, %b %d, %Y"
+format = "%a %b %d %Y"
 fullDate = todayDate.strftime(format)
+diffDate = 1
 
 # puts all values of rows into a list of strings
 def findRowValues(row_string):
@@ -63,7 +64,7 @@ def calculateBalance(differenceDate, firstRowValues, secondRowValues, lastRowVal
     dailyUpdateC = weeklyUpdateC / 7
     dailyupdateD = weeklyUpdateD / 7
 
-    if differenceDate.days > totalDays:
+    if differenceDate.days > totalDays or differenceDate.days < 0:
         currentBalanceAPlus = 0.00
         currentBalanceA = 0.00
         currentBalanceB = 0.00
@@ -98,6 +99,9 @@ def main():
     startingDate = datetime(currentYear, startingMonth, startingDay)
     differenceDate = todayDate - startingDate
 
+    global diffDate
+    diffDate = differenceDate
+
     CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A, CURRENT_BALANCE_B, CURRENT_BALANCE_C, CURRENT_BALANCE_D = calculateBalance(differenceDate, firstRowValues, secondRowValues, lastRowValues)
 
 if __name__ == "__main__":
@@ -108,7 +112,7 @@ app = Flask(__name__, static_url_path='/static')
 
 @app.route('/')
 def hello():
-    return render_template('index.html', CURRENT_BALANCE_APLUS = CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A = CURRENT_BALANCE_A, CURRENT_BALANCE_B = CURRENT_BALANCE_B, CURRENT_BALANCE_C = CURRENT_BALANCE_C, CURRENT_BALANCE_D = CURRENT_BALANCE_D, todayDate = fullDate)
+    return render_template('index.html', CURRENT_BALANCE_APLUS = CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A = CURRENT_BALANCE_A, CURRENT_BALANCE_B = CURRENT_BALANCE_B, CURRENT_BALANCE_C = CURRENT_BALANCE_C, CURRENT_BALANCE_D = CURRENT_BALANCE_D, todayDate = fullDate, diffDate = diffDate)
 
 if __name__ == '__main__':
     app.run(debug = True)

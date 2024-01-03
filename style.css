@@ -1,3 +1,16 @@
 * {
     font-family: 'Lora', serif;
 }
+
+.mycarousel {
+    width: 75%;
+    border: 20px black dashed;
+}
+
+.carousel-indicators {
+    color: black;
+}
+
+body {
+    background-color: black;
+}

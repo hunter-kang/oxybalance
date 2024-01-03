@@ -2,21 +2,158 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oxy Balance</title>
-    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <title>OXYBalance</title>
+    <!-- <link href="style.css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type = "text/css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      * {
+          font-family: Arial, Helvetica, sans-serif;
+          text-align: center;
+      }
+
+      body {
+        margin: 2%;
+      }
+
+      h5 {
+        text-decoration: underline;
+        font-size: 300%;
+        color: #e4642c;
+      }
+
+      .carousel-surrounding {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      p {
+        font-size: 150%
+      }
+
+      img {
+          width: 75%;
+          margin: 2% 0% 0% 12.5%
+      }
+
+      .mycarousel {
+          width: 50%;
+          border: 5px solid black;
+          border-radius: 2%;
+          text-align: center;
+          font-size: 125%;
+          margin: 3%;
+      }
+
+      .carousel-inner {
+        padding: 2%;
+      }
+
+      /* .carousel .carousel-indicators li {background-color: red;}
+.carousel .carousel-indicators li.active {background-color: blue;} */
+
+      .control li {
+        background-color: black;
+      }
+
+      .control li.active {
+        background-color: #e4642c;
+      }
+
+      .view-current {
+        background-color: #e4642c;
+        border: 5px solid #e4642c;
+        color: black;
+        padding: 1%;
+        text-decoration: bold;
+        text-align: center;
+        border-radius: 2%;
+        display: block;
+        width: 40%;
+        margin: 2% 30%;
+        font-size: 150%
+      }
+      
+      .balance {
+        font-size: 300%;
+        margin: 5% 25% 10% 25%;
+      }
+
+      .carousel-control-next-icon {
+        filter: invert(100%);
+      }
+
+      .carousel-control-prev-icon {
+        filter: invert(100%);
+      }
+
+      </style>
   </head>
   <body>
-    <a href="index.html"> <h1>Oxy Balance</h1> </a>
+    <a href="index.html"> </a>
+    <img src = "{{ url_for('static', filename='oxybalancelogo.jpg') }}" alt="OxyBalance Logo">
+    <p>Including your balance for today, <strong>{{todayDate}}</strong>, you should have...</p>
     
-    <p>Including today {{todayDate}}, you should have...</p>
-    <div>
-        <h3 class = "plan">Plan A+</h3>
-        <p class = "amount">{{CURRENT_BALANCE_APLUS}}</p>
-    </div>
     
-  
+    <div class = "carousel-surrounding">
+    <div class="mycarousel">
+      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators control">
+          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
 
+
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class=" d-none d-md-block">
+              <h5>Plan A+</h5>
+              <p class = "balance">${{CURRENT_BALANCE_APLUS}}</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class=" d-none d-md-block">
+              <h5>Plan A</h5>
+              <p class = "balance">${{CURRENT_BALANCE_A}}</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class=" d-none d-md-block">
+              <h5>Plan B</h5>
+              <p class = "balance">${{CURRENT_BALANCE_B}}</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class=" d-none d-md-block">
+              <h5>Plan C</h5>
+              <p class = "balance">${{CURRENT_BALANCE_C}}</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class=" d-none d-md-block">
+              <h5>Plan D</h5>
+              <p class = "balance">${{CURRENT_BALANCE_D}}</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon control" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+          <span class="carousel-control-next-icon control" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href = "https://get.cbord.com/oxy/full/login.php" class = "view-current">View My Current Balance</a>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body></html>

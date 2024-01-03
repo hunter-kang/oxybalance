@@ -9,6 +9,8 @@ CURRENT_BALANCE_B = 0.00
 CURRENT_BALANCE_C = 0.00
 CURRENT_BALANCE_D = 0.00
 todayDate = datetime.today()
+format = "%A, %b %d, %Y"
+fullDate = todayDate.strftime(format)
 
 # puts all values of rows into a list of strings
 def findRowValues(row_string):
@@ -74,9 +76,17 @@ def calculateBalance(differenceDate, firstRowValues, secondRowValues, lastRowVal
         currentBalanceC = startingBalanceC - (dailyUpdateC * differenceDate.days)
         currentBalanceD = startingBalanceD - (dailyupdateD * differenceDate.days)
 
-    return currentBalanceAPlus, currentBalanceA, currentBalanceB, currentBalanceC, currentBalanceD
+    roundedBalanceAPlus = round(currentBalanceAPlus, 2)
+    roundedBalanceA = round(currentBalanceA, 2)
+    roundedBalanceB = round(currentBalanceB, 2)
+    roundedBalanceC = round(currentBalanceC, 2)
+    roundedBalanceD = round(currentBalanceD, 2)
+
+    return roundedBalanceAPlus, roundedBalanceA, roundedBalanceB, roundedBalanceC, roundedBalanceD
 
 def main():
+    global CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A, CURRENT_BALANCE_B, CURRENT_BALANCE_C, CURRENT_BALANCE_D
+
     currentYear = todayDate.year
 
     firstRowValues, secondRowValues, lastRowValues = scrapeWebsite()
@@ -94,12 +104,12 @@ if __name__ == "__main__":
     main()
 
 from flask import Flask, render_template
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 @app.route('/')
 def hello():
-    return render_template('index.html', CURRENT_BALANCE_APLUS = CURRENT_BALANCE_APLUS, todayDate = todayDate)
+    return render_template('index.html', CURRENT_BALANCE_APLUS = CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A = CURRENT_BALANCE_A, CURRENT_BALANCE_B = CURRENT_BALANCE_B, CURRENT_BALANCE_C = CURRENT_BALANCE_C, CURRENT_BALANCE_D = CURRENT_BALANCE_D, todayDate = fullDate)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug = True)
 

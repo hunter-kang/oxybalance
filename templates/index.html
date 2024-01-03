@@ -20,7 +20,6 @@
       }
 
       h5 {
-        text-decoration: underline;
         color: #e4642c;
       }
  
@@ -56,9 +55,10 @@
 
       @media only screen and (max-width: 600px){
       h5 {
-        text-decoration: underline;
-        font-size: 200%;
-        color: #e4642c;
+        font-size: 250%;
+        border-bottom: 3px solid #e4642c;
+        width: 70%;
+        margin-left: 15%
       }
  
 
@@ -68,36 +68,40 @@
       }
 
       p {
-        font-size: 75%;
+        font-size: 125%;
+        margin-left: 10%;
+        margin-right: 10%;
         margin-bottom: 0%;
+        margin-top: 5%;
       }
 
       img {
-          width: 75%;
-          margin: 2% 0% 0% 12.5%
+          width: 100%;
+          margin-left: 0%;
+          margin-top: 5%;
       }
 
       .mycarousel {
-          width: 100%;
+          margin: 5% 0;
+          width: 90%;
           font-size: 125%;
-          margin: 2% 0 1% 0;
       }
 
       .carousel-inner {
-        padding: 2%;
+          padding: 2%;
       }
 
-      .view-current {
-        padding: 1%;
-        width: 80%;
-        margin: 1% 20%;
-        font-size: 75%;
+      .btn-custom {
+        margin-top: 5%;
+        width: 90%;
+        background-color: #e4642c;
+        color: #000000;
       }
-      
+
       .balance {
-        font-size: 300%;
-        margin: 5% 25% 10% 25%;
+        font-size: 250%;
       }
+
     }
     @media only screen and (min-width: 601px) {
       h5 {
@@ -133,7 +137,7 @@
       
       .balance {
         font-size: 300%;
-        margin: 5% 25% 10% 25%;
+        /* margin: 5% 25% 10% 25%; */
       }
 
     }
@@ -148,8 +152,11 @@
       @media only screen and (max-width: 600px) {
       .col-0 {
         width: 100%;
+        float: left;
         border: 3px dashed red;
       }
+
+      /* [class*="-s"] */
 
       h2 {
         color: red;
@@ -177,18 +184,18 @@
       }
       @media only screen and (min-width: 768px) {
          /* For desktop: */
-         .col-1 {width: 8.33%;}
-          .col-2 {width: 16.66%;}
-          .col-3 {width: 25%; border: 3px dashed blue}
-          .col-4 {width: 33.33%;}
-          .col-5 {width: 41.66%;}
-          .col-6 {width: 50%;}
-          .col-7 {width: 58.33%;}
-          .col-8 {width: 66.66%;}
-          .col-9 {width: 75%;}
-          .col-10 {width: 83.33%;}
-          .col-11 {width: 91.66%;}
-          .col-12 {width: 100%;}
+         .col-d-1 {width: 8.33%;}
+          .col-d-2 {width: 16.66%;}
+          .col-d-3 {width: 25%; border: 3px dashed blue}
+          .col-d-4 {width: 33.33%;}
+          .col-d-5 {width: 41.66%;}
+          .col-d-6 {width: 50%;}
+          .col-d-7 {width: 58.33%;}
+          .col-d-8 {width: 66.66%;}
+          .col-d-9 {width: 75%;}
+          .col-d-10 {width: 83.33%;}
+          .col-d-11 {width: 91.66%;}
+          .col-d-12 {width: 100%;}
           h2 {
         color: blue;
       }
@@ -196,87 +203,86 @@
       </style>
   </head>
   <body>
-    <div class = "row col-0">
-      <div class = "col-3 col-s-3">      </div>
-      <div class = "col-6 col-s-9">
+    <div class = "row">
+      <div class = "col-d-3 col-s-3">      </div>
+      <div class = "col-0 col-d-6 col-s-9">
       <img src = "{{ url_for('static', filename='oxybalancelogo.jpg') }}" alt="OxyBalance Logo">
       </div>
-      <div class = "col-3 col-s-12">      </div>
+      <div class = "col-d-3 col-s-12">      </div>
     </div>
-    <div class = "row col">
-      <div class = "col-3 col-s-3">      </div>
-      <div class = "col-6 col-s-9">
-      <p>Including your balance for today, <strong>{{todayDate}}</strong>, you should have...</p>
+    <div class = "row">
+      <div class = "col-d-3 col-s-3">      </div>
+      <div class = "col-0 col-d-6 col-s-9">
+        <p>Including your balance for today, <strong>{{todayDate}}</strong>, you should have...</p>
       </div>
-      <div class = "col-3 col-s-12">      </div>
-      
+      <div class = "col-d-3 col-s-12">      </div>
     </div>
     
-    <div class = "row col">
-      <div class = "col-3 col-s-3">      </div>
-      <div class = "col-6 col-s-9">
-    <div class = "carousel-surrounding">
-    <div class="mycarousel">
-      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators control">
-          <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
-
-
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class=" d-none d-md-block">
-              <h5>Plan A+</h5>
-              <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_APLUS) }}</p>
+    <div class = "row">
+      <div class = "col-d-3 col-s-3">      </div>
+      <div class = "col-0 col-d-6 col-s-9">
+        <div class = "carousel-surrounding">
+        <div class="mycarousel">
+          <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators control">
+              <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="col-0 col-d-6 col-s-9">
+                  <h5>Plan A+</h5>
+                  <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_APLUS) }}</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-0 col-d-6 col-s-9">
+                  <h5>Plan A</h5>
+                  <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_A) }}</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-0 col-d-6 col-s-9">
+                  <h5>Plan B</h5>
+                  <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_B) }}</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-0 col-d-6 col-s-9">
+                  <h5>Plan C</h5>
+                  <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_C) }}</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="col-0 col-d-6 col-s-9">
+                  <h5>Plan D</h5>
+                  <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_D) }}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="carousel-item">
-            <div class=" d-none d-md-block">
-              <h5>Plan A</h5>
-              <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_A) }}</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class=" d-none d-md-block">
-              <h5>Plan B</h5>
-              <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_B) }}</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class=" d-none d-md-block">
-              <h5>Plan C</h5>
-              <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_C) }}</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class=" d-none d-md-block">
-              <h5>Plan D</h5>
-              <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_D) }}</p>
-            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon control" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+              <span class="carousel-control-next-icon control" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon control" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-          <span class="carousel-control-next-icon control" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
     </div>
-  </div>
-  </div>
-  <div class = "col-3 col-s-12">      </div>
+  <div class = "col-d-3 col-s-12">      </div>
 </div>
-  <div class = "row col">
-    <div class = "col-3 col-s-3">      </div>
-      <div class = "col-6 col-s-9">
-  <a href = "https://get.cbord.com/oxy/full/login.php" class = "view-current">View My Current Balance</a>
+  <div class = "row">
+    <div class = "col-d-3 col-s-3">      </div>
+      <div class = "col-0 col-d-6 col-s-9">
+        <div class="d-grid gap-2 mx-auto d-md-flex justify-content-end">
+          <a href="https://get.cbord.com/oxy/full/login.php" class="btn btn-custom" role="button">View My Current Balance</a>
+        </div>
       </div>
       <div class = "col-3 col-s-12" >      </div>
 </div>

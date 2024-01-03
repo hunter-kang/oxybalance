@@ -115,5 +115,5 @@ def hello():
     return render_template('index.html', CURRENT_BALANCE_APLUS = CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A = CURRENT_BALANCE_A, CURRENT_BALANCE_B = CURRENT_BALANCE_B, CURRENT_BALANCE_C = CURRENT_BALANCE_C, CURRENT_BALANCE_D = CURRENT_BALANCE_D, todayDate = fullDate, diffDate = diffDate)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 

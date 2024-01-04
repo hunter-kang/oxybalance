@@ -21,6 +21,8 @@
 
       h5 {
         color: #e4642c;
+        display: flex;
+        justify-content: center;
       }
  
       .carousel-surrounding {
@@ -29,10 +31,18 @@
       }
 
       .mycarousel {
-          border: 5px solid black;
-          border-radius: 2%;
-          text-align: center;
+        border: 5px solid black;
+        border-radius: 2%;
       }
+
+      /* .carousel-inner {
+         display: flex;
+         padding: 0;
+      } */
+
+      /* .carousel-item > div {
+        width: 100%;
+      } */
       
       .carousel-control-next-icon {
         filter: invert(100%);
@@ -41,20 +51,27 @@
       .carousel-control-prev-icon {
         filter: invert(100%);
       }
-      
-      .olive {
-        width: 40%;
-        margin-top: 5%;
+
+      .control li {
+        background-color: black;
       }
 
-      @media only screen and (max-width: 600px){
+      .control li.active {
+        background-color: #e4642c;
+      }
+
+      .balance {
+        display: flex;
+        justify-content: center;
+      }
+
+      @media only screen and (max-width: 600px) {
       h5 {
         font-size: 250%;
         border-bottom: 3px solid #e4642c;
         width: 70%;
         margin-left: 15%
       }
- 
 
       .carousel-surrounding {
         display: flex;
@@ -94,12 +111,21 @@
 
       .balance {
         font-size: 250%;
+        margin-top: -2.5%;
+        margin-bottom: 5%;
       }
 
+      .olive {
+        width: 40%;
+        margin-top: 5%;
+      }
     }
+
     @media only screen and (min-width: 601px) {
       h5 {
         font-size: 300%;
+        border-bottom: 3px solid #e4642c;
+        width: 100%;
       }
  
       p {
@@ -107,43 +133,88 @@
       }
 
       img {
-          width: 75%;
-          margin: 2% 0% 0% 12.5%
+          width: 85%;
+          margin: 2% 0% 0% 2.0%
       }
 
       .mycarousel {
-          width: 50%;
+          width: 90%;
           font-size: 125%;
-          margin: 2% 0 1% 0;
       }
 
-      .carousel-inner {
-        padding: 2%;
-      }
-
-      .view-current {
-        padding: 1%;
-        border-radius: 2%;
-        width: 40%;
-        margin: 1% 30%;
-        font-size: 150%
-      }
-      
       .balance {
         font-size: 300%;
-        /* margin: 5% 25% 10% 25%; */
+        margin-top: -2.5%;
+        margin-bottom: 10%;
       }
 
+      .btn-custom {
+        margin-top: 2.5%;
+        width: 80%;
+        background-color: #e4642c;
+        color: #000000; 
+        height: 40px;
+        font-size: 125%;
+      }
+
+      .olive {
+        width: 20%;
+        margin-bottom: 2.5%;
+
+      }
     }
 
-      .row::after {
-        content: "";
-        clear: both;
-        display: table;
+    @media only screen and (min-width: 1000px) {
+      /* For desktop: */
+      h5 {
+        font-size: 400%;
+        border-bottom: 3px solid #e4642c;
+        width: 100%;
+      }
+ 
+      p {
+        font-size: 175%
       }
 
-      /* For mobile phones: */
-      @media only screen and (max-width: 600px) {
+      img {
+          width: 110%;
+          margin-left: -5%;
+          margin-top: 5%;
+      }
+
+      .mycarousel {
+          font-size: 125%;
+          width: 90%;
+      }
+
+      .balance {
+        font-size: 350%;
+      }
+
+      .btn-custom {
+        width: 70%;
+        background-color: #e4642c;
+        color: #000000;
+        height: 60px;
+        font-size: 200%;
+      }
+
+      .olive {
+        width: 30%;
+        margin-top: 5%;
+        margin-left: 0%;
+        margin-bottom: 5%;
+      }
+    }
+
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    /* For mobile phones: */
+    @media only screen and (max-width: 600px) {
       .col-0 {
         width: 100%;
         float: left;
@@ -157,64 +228,65 @@
       }
     }
 
-      @media only screen and (min-width: 601px) {
-        /* For tablets: */
-        .col-s-1 {width: 8.33%;}
-        .col-s-2 {width: 16.66%;}
-        .col-s-3 {width: 25%; border:3px dashed green;}
-        .col-s-4 {width: 33.33%;}
-        .col-s-5 {width: 41.66%;}
-        .col-s-6 {width: 50%;}
-        .col-s-7 {width: 58.33%;}
-        .col-s-8 {width: 66.66%;}
-        .col-s-9 {width: 75%;}
-        .col-s-10 {width: 83.33%;}
-        .col-s-11 {width: 91.66%;}
-        .col-s-12 {width: 100%;}
+    @media only screen and (min-width: 601px) {
+      /* For tablets: */
+      .col-t-1 {width: 8.33%; border:3px dashed green;}
+      .col-t-2 {width: 16.66%;}
+      .col-t-3 {width: 25%; border:3px dashed green;}
+      .col-t-4 {width: 33.33%;}
+      .col-t-5 {width: 41.66%;}
+      .col-t-6 {width: 50%;}
+      .col-t-7 {width: 58.33%;}
+      .col-t-8 {width: 66.66%;}
+      .col-t-9 {width: 75%;}
+      .col-t-10 {width: 83.33%; border:3px dashed green;}
+      .col-t-11 {width: 91.66%;}
+      .col-t-12 {width: 100%;}
 
-        h2 {
+      h2 {
         color: green;
       }
-      }
-      @media only screen and (min-width: 768px) {
-         /* For desktop: */
-         .col-d-1 {width: 8.33%;}
-          .col-d-2 {width: 16.66%;}
-          .col-d-3 {width: 25%; border: 3px dashed blue}
-          .col-d-4 {width: 33.33%;}
-          .col-d-5 {width: 41.66%;}
-          .col-d-6 {width: 50%;}
-          .col-d-7 {width: 58.33%;}
-          .col-d-8 {width: 66.66%;}
-          .col-d-9 {width: 75%;}
-          .col-d-10 {width: 83.33%;}
-          .col-d-11 {width: 91.66%;}
-          .col-d-12 {width: 100%;}
-          h2 {
-        color: blue;
-      }
-      }
+    }
+    @media only screen and (min-width: 1000px) {
+        /* For desktop: */
+        .col-d-1 {width: 8.33%;}
+        .col-d-2 {width: 16.66%; border: 3px dashed blue;}
+        .col-d-3 {width: 25%; border: 3px dashed blue;}
+        .col-d-4 {width: 33.33%;}
+        .col-d-5 {width: 41.66%;}
+        .col-d-6 {width: 50%;}
+        .col-d-7 {width: 58.33%;}
+        .col-d-8 {width: 66.66%; border: 3px dashed blue;}
+        .col-d-9 {width: 75%;}
+        .col-d-10 {width: 83.33%; border: 3px dashed blue;}
+        .col-d-11 {width: 91.66%;}
+        .col-d-12 {width: 100%;}
+
+        h2 {
+          color: blue;
+        }
+    }
       </style>
   </head>
   <body>
     <div class = "row">
-      <div class = "col-d-3 col-s-3">      </div>
-      <div class = "col-0 col-d-6 col-s-9">
+      <div class = "col-d-2 col-t-1">      </div>
+      <div class = "col-0 col-d-8 col-t-10">
       <img src = "{{ url_for('static', filename='oxybalancelogo.jpg') }}" alt="OxyBalance Logo">
       </div>
-      <div class = "col-d-3 col-s-12">      </div>
+      <div class = "col-d-2 col-t-1">      </div>
     </div>
     <div class = "row">
-      <div class = "col-d-3 col-s-3">      </div>
-      <div class = "col-0 col-d-6 col-s-9">
+      <div class = "col-d-2 col-t-1">      </div>
+      <div class = "col-0 col-d-8 col-t-10">
         <p>Including your balance for today, <strong>{{todayDate}}</strong>, you should have...</p>
       </div>
-      <div class = "col-d-3 col-s-12">      </div>
+      <div class = "col-d-2 col-t-1">      </div>
     </div>
     
     <div class = "row">
-      <div class = "col-d-3 col-s-3">      </div>
-      <div class = "col-0 col-d-6 col-s-9">
+      <div class = "col-d-2 col-t-1">      </div>
+      <div class = "col-0 col-d-8 col-t-10">
         <div class = "carousel-surrounding">
         <div class="mycarousel">
           <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -227,31 +299,31 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <div class="col-0 col-d-6 col-s-9">
+                <div class="col-0 col-d-6 col-t-9 mx-auto">
                   <h5>Plan A+</h5>
                   <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_APLUS) }}</p>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="col-0 col-d-6 col-s-9">
+                <div class="col-0 col-d-6 col-t-9 mx-auto">
                   <h5>Plan A</h5>
                   <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_A) }}</p>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="col-0 col-d-6 col-s-9">
+                <div class="col-0 col-d-6 col-t-9 mx-auto">
                   <h5>Plan B</h5>
                   <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_B) }}</p>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="col-0 col-d-6 col-s-9">
+                <div class="col-0 col-d-6 col-t-9 mx-auto">
                   <h5>Plan C</h5>
                   <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_C) }}</p>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="col-0 col-d-6 col-s-9">
+                <div class="col-0 col-d-6 col-t-9 mx-auto">
                   <h5>Plan D</h5>
                   <p class = "balance">${{ "{:.2f}".format(CURRENT_BALANCE_D) }}</p>
                 </div>
@@ -269,23 +341,23 @@
         </div>
       </div>
     </div>
-  <div class = "col-d-3 col-s-12">      </div>
+  <div class = "col-d-2 col-t-1">      </div>
 </div>
   <div class = "row">
-    <div class = "col-d-3 col-s-3">      </div>
-      <div class = "col-0 col-d-6 col-s-9">
-        <div class="d-grid gap-2 mx-auto d-md-flex justify-content-end">
-          <a href="https://get.cbord.com/oxy/full/login.php" class="btn btn-custom" role="button">View My Current Balance</a>
+    <div class = "col-d-2 col-t-1">      </div>
+      <div class = "col-0 col-d-8 col-t-10">
+        <div class="d-grid gap-2 mx-auto d-flex justify-content-center">
+          <a href="https://get.cbord.com/oxy/full/login.php" class="btn btn-custom" role="button">View my current balance</a>
         </div>
       </div>
-      <div class = "col-3 col-s-12" >      </div>
+      <div class = "col-d-2 col-t-1" >      </div>
 </div>
 <div class = "row">
-  <div class = "col-d-3 col-s-3">      </div>
-  <div class = "col-0 col-d-6 col-s-9">
+  <div class = "col-d-2 col-t-1">      </div>
+  <div class = "col-0 col-d-8 col-t-10">
     <img class= "olive" src = "{{ url_for('static', filename='occidental_logo.jpg') }}" alt="Olive Picture"> </img>
   </div>
-  <div class = "col-3 col-s-12" >      </div>
+  <div class = "col-d-2 col-t-1" >      </div>
 <h2 class >DEBUGGGING</h2>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

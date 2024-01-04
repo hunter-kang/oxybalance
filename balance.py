@@ -65,7 +65,7 @@ def calculateBalance(differenceDate, firstRowValues, secondRowValues, lastRowVal
     dailyupdateD = weeklyUpdateD / 7
 
     if differenceDate.days > totalDays or differenceDate.days < 0:
-        currentBalanceAPlus = 0.00
+        currentBalanceAPlus = 1000.12
         currentBalanceA = 0.00
         currentBalanceB = 0.00
         currentBalanceC = 0.00

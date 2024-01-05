@@ -1,5 +1,5 @@
 [build]
-  command = "python balance.py"
+  command = "pip install beautifulsoup4 && python balance.py"
   publish = "static"
 
 [[headers]]

@@ -1,5 +1,5 @@
 [build]
-  command = "python balance.py"
+  command = "gunicorn -w 4 -b 0.0.0.0:5000 balance:app"
   publish = "static"
 
 [[headers]]

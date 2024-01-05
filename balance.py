@@ -104,9 +104,6 @@ def main():
 
     CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A, CURRENT_BALANCE_B, CURRENT_BALANCE_C, CURRENT_BALANCE_D = calculateBalance(differenceDate, firstRowValues, secondRowValues, lastRowValues)
 
-if __name__ == "__main__":
-    main()
-
 from flask import Flask, render_template
 app = Flask(__name__, static_url_path='/static')
 
@@ -114,6 +111,7 @@ app = Flask(__name__, static_url_path='/static')
 def hello():
     return render_template('index.html', CURRENT_BALANCE_APLUS = CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A = CURRENT_BALANCE_A, CURRENT_BALANCE_B = CURRENT_BALANCE_B, CURRENT_BALANCE_C = CURRENT_BALANCE_C, CURRENT_BALANCE_D = CURRENT_BALANCE_D, todayDate = fullDate, diffDate = diffDate)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    main()
     app.run()
 

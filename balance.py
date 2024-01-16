@@ -8,10 +8,11 @@ CURRENT_BALANCE_A = 0.00
 CURRENT_BALANCE_B = 0.00
 CURRENT_BALANCE_C = 0.00
 CURRENT_BALANCE_D = 0.00
-todayDate = datetime.today()
-format = "%a %b %d %Y"
-fullDate = todayDate.strftime(format)
-diffDate = 1
+
+# todayDate = datetime.today()
+# format = "%a %b %d %Y"
+# fullDate  = todayDate #.strftime(format)
+# diffDate = 1
 
 # puts all values of rows into a list of strings
 def findRowValues(row_string):
@@ -87,6 +88,10 @@ def calculateBalance(differenceDate, firstRowValues, secondRowValues, lastRowVal
 
 def main():
     global CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A, CURRENT_BALANCE_B, CURRENT_BALANCE_C, CURRENT_BALANCE_D
+    # global fullDate
+
+    todayDate = datetime.today()
+    # fullDate = todayDate
 
     currentYear = todayDate.year
 
@@ -99,8 +104,8 @@ def main():
     startingDate = datetime(currentYear, startingMonth, startingDay)
     differenceDate = todayDate - startingDate
 
-    global diffDate
-    diffDate = differenceDate
+    # global diffDate
+    # diffDate = differenceDate
 
     CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A, CURRENT_BALANCE_B, CURRENT_BALANCE_C, CURRENT_BALANCE_D = calculateBalance(differenceDate, firstRowValues, secondRowValues, lastRowValues)
 
@@ -109,9 +114,11 @@ app = Flask(__name__, static_url_path='/static')
 
 @app.route('/')
 def hello():
-    return render_template('index.html', CURRENT_BALANCE_APLUS = CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A = CURRENT_BALANCE_A, CURRENT_BALANCE_B = CURRENT_BALANCE_B, CURRENT_BALANCE_C = CURRENT_BALANCE_C, CURRENT_BALANCE_D = CURRENT_BALANCE_D, todayDate = fullDate, diffDate = diffDate)
+    todayDate = datetime.today()
+    fullDate = todayDate
+    main()
+    return render_template('index.html', CURRENT_BALANCE_APLUS = CURRENT_BALANCE_APLUS, CURRENT_BALANCE_A = CURRENT_BALANCE_A, CURRENT_BALANCE_B = CURRENT_BALANCE_B, CURRENT_BALANCE_C = CURRENT_BALANCE_C, CURRENT_BALANCE_D = CURRENT_BALANCE_D, todayDate = fullDate) # diffDate = diffDate)
 
 if __name__ == "__main__":
-    main()
-    app.run()
+    app.run(debug=True)
 
